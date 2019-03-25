@@ -1,23 +1,22 @@
 <nav class="navbar navbar-light">
   <div class="container">
-    <a class="navbar-brand" href="index.html">conduit</a>
+    <LinkTo @route="index" class="navbar-brand">conduit</LinkTo>
     <ul class="nav navbar-nav pull-xs-right">
       <li class="nav-item">
-        {{!-- Add "active" class when you're on that page" --}}
-        <a class="nav-link active" href="">Home</a>
+        <LinkTo @route="index" class="nav-link">Home</LinkTo>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <LinkTo @route="editor" class="nav-link">
           <i class="ion-compose"></i>&nbsp;New Post
-        </a>
+        </LinkTo>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">
-          <i class="ion-gear-a"></i>&nbsp;Settings
-        </a>
+        <LinkTo @route="settings" class="nav-link">
+          <i class="ion-compose"></i>&nbsp;Settings
+        </LinkTo>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Sign up</a>
+        <LinkTo @route="sign-up" class="nav-link">Sign up</LinkTo>
       </li>
     </ul>
   </div>
