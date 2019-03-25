@@ -3,6 +3,9 @@ module.exports = {
   disable_watching: true,
   launch_in_ci: ['Chrome'],
   launch_in_dev: ['Chrome'],
+  reporter: 'xunit',
+  report_file: 'test-results/ember/results.xml',
+  xunit_intermediate_output: true,
   browser_args: {
     Chrome: {
       mode: 'ci',

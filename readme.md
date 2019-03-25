@@ -1,4 +1,4 @@
-# realworld-starter-kit
+# realworld-starter-kit [![CircleCI](https://circleci.com/gh/patocallaghan/realworld-starter-kit.svg?style=svg)](https://circleci.com/gh/patocallaghan/realworld-starter-kit)
 
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
@@ -16,7 +16,7 @@ You will need the following things properly installed on your computer.
 
 * `git clone <repository-url>` this repository
 * `cd realworld-starter-kit`
-* `npm install`
+* `yarn`
 
 ## Running / Development
 
@@ -30,14 +30,14 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Running Tests
 
-* `ember test`
-* `ember test --server`
+* `yarn test`
+* `yarn test --server`
 
 ### Linting
 
-* `npm run lint:hbs`
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
+* `yarn lint:hbs`
+* `yarn lint:js`
+* `yarn lint:js -- --fix`
 
 ### Building
 
