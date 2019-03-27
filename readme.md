@@ -1,4 +1,4 @@
-# realworld-starter-kit [![CircleCI](https://circleci.com/gh/patocallaghan/realworld-starter-kit.svg?style=svg)](https://circleci.com/gh/patocallaghan/realworld-starter-kit)
+# realworld-starter-kit [![CircleCI](https://circleci.com/gh/patocallaghan/realworld-starter-kit.svg?style=svg)](https://circleci.com/gh/patocallaghan/realworld-starter-kit) [![Netlify Status](https://api.netlify.com/api/v1/badges/8ef50990-52e9-4b82-bc29-575947c533ff/deploy-status)](https://app.netlify.com/sites/romantic-noether-756753/deploys)
 
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
