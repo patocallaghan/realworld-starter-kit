@@ -10,6 +10,10 @@ Router.map(function() {
   this.route('editor');
   this.route('settings');
   this.route('sign-up');
+
+  this.route('articles', function() {
+    this.route('article', { path: ':id' });
+  });
 });
 
 export default Router;
