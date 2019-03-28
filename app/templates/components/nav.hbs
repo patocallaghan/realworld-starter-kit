@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light">
   <div class="container">
-    <LinkTo @route="index" class="navbar-brand">conduit</LinkTo>
+    <LinkTo @route="index" @query={{hash author=null page=1 tag=null}} class="navbar-brand">conduit</LinkTo>
     <ul class="nav navbar-nav pull-xs-right">
       <li class="nav-item">
         <LinkTo @route="index" class="nav-link">Home</LinkTo>

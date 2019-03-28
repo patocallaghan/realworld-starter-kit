@@ -7,4 +7,12 @@ export default class ArticleSerializer extends RESTSerializer.extend(EmbeddedRec
   attrs = {
     author: { embedded: 'always' },
   };
+
+  extractMeta(store, typeClass, payload) {
+    if (payload && payload.articlesCount) {
+      let meta = { articlesCount: payload.articlesCount };
+      delete payload.articlesCount;
+      return meta;
+    }
+  }
 }

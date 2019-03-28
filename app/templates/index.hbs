@@ -25,6 +25,13 @@
         {{#each this.model as |article|}}
           <ArticlePreview @article={{article}}/>
         {{/each}}
+
+        <Pagination
+          @total={{this.model.meta.articlesCount}}
+          @perPage={{10}}
+          @current={{this.page}}
+          @existingParams={{hash author=this.author tag=this.tag}}
+        />
       </div>
 
       <div class="col-md-3">
