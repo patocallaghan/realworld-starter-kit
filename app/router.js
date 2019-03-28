@@ -14,6 +14,7 @@ Router.map(function() {
   this.route('articles', function() {
     this.route('article', { path: ':id' });
   });
+  this.route('author', { path: 'profile/:id' });
 });
 
 export default Router;
