@@ -1,15 +1,11 @@
 <div class="article-preview">
   <div class="article-meta">
-    <LinkTo @route="author" @model={{@article.author.id}}><img src={{@article.author.image}} alt=""></LinkTo>
-    <div class="info">
-      <LinkTo @route="author" @model={{@article.author.id}} class="author">{{@article.author.id}}</LinkTo>
-      <span class="date">{{format-date @article.updatedAt}}</span>
-    </div>
+    <ArticleAuthor @author={{@article.author}} @updatedAt={{@article.updatedAt}} />
     <button class="btn btn-outline-primary btn-sm pull-xs-right">
       <i class="ion-heart"></i> {{@article.favoritesCount}}
     </button>
   </div>
-  <LinkTo @route="articles.article" @model={{@article}} class="preview-link">
+  <LinkTo @route="articles.article" @model={{@article.id}} class="preview-link">
     <h1>{{@article.title}}</h1>
     <p>{{@article.description}}</p>
     <span>Read more...</span>
