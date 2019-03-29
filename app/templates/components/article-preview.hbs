@@ -13,5 +13,15 @@
     <h1>{{@article.title}}</h1>
     <p>{{@article.description}}</p>
     <span>Read more...</span>
+
+    {{#if @article.tagList}}
+      <ul class="tag-list">
+        {{#each @article.tagList as |tag|}}
+          <li class="tag-default tag-pill tag-outline">
+            <span>{{tag}}</span>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
   </LinkTo>
 </div>
