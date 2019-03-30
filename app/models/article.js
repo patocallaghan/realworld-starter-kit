@@ -4,6 +4,7 @@ import { tracked } from '@glimmer/tracking';
 import marked from 'marked';
 import { htmlSafe } from '@ember/string';
 import { inject as service } from '@ember/service';
+import ENV from 'realworld-starter-kit/config/environment';
 
 export default class ArticleModel extends Model {
   @tracked body;
@@ -34,7 +35,7 @@ export default class ArticleModel extends Model {
   }
 
   async favorite() {
-    let response = await fetch(`/api/articles/${this.id}/favorite`, {
+    let response = await fetch(`${ENV.APP.apiHost}/articles/${this.id}/favorite`, {
       headers: {
         Authorization: `Token ${this.session.token}`,
       },

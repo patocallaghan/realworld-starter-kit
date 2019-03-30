@@ -1,15 +1,17 @@
 import Service from '@ember/service';
-import { getOwner } from '@ember/application';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
+import ENV from 'realworld-starter-kit/config/environment';
 
 export default class SessionService extends Service {
   @service('store') store;
 
   @tracked token;
+  @tracked user;
 
   token = null;
+  user = null;
   STORAGE_KEY = 'realworld.ember-octane.token';
 
   get isLoggedIn() {
@@ -20,6 +22,7 @@ export default class SessionService extends Service {
     let storedToken = this.getStoredToken();
     if (storedToken) {
       this.token = storedToken;
+      this.fetchUser();
       return true;
     }
 
@@ -36,13 +39,13 @@ export default class SessionService extends Service {
     await user.save();
     localStorage.setItem(this.STORAGE_KEY);
     this.token = user.token;
+    this.user = user;
   }
 
   @action
   async logIn(email, password) {
     // @patocallaghan - It would be nice to encapsulate some of this logic in the User model as a `static` class, but unsure how to access container and store from there
-    let host = getOwner(this).lookup('adapter:application').host;
-    let login = await fetch(`${host}/users/login`, {
+    let login = await fetch(`${ENV.APP.apiHost}/users/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -64,6 +67,19 @@ export default class SessionService extends Service {
   @action
   logOut() {
     this.removeToken();
+  }
+
+  async fetchUser() {
+    let response = await fetch(`${ENV.APP.apiHost}/user`, {
+      headers: {
+        Authorization: `Token ${this.session.token}`,
+      },
+    });
+    let { user } = await response.json();
+    this.store.pushPayload({
+      users: [user],
+    });
+    this.user = this.store.peekRecord('user', user.id);
   }
 
   getStoredToken() {
