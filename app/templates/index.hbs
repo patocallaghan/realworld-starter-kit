@@ -15,7 +15,7 @@
           <ul class="nav nav-pills outline-active">
             {{#if this.session.isLoggedIn}}
               <li class="nav-item">
-                <a class="nav-link disabled" href="">Your Feed</a>
+                <LinkTo @route="index" @query={{hash author=this.session.user.username tag=null page=1}} class="nav-link  {{unless this.session.user "active"}}">Your Feed</LinkTo>
               </li>
             {{/if}}
             <li class="nav-item">
