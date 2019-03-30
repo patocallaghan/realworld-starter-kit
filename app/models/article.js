@@ -3,9 +3,12 @@ const { Model, attr, belongsTo, hasMany } = DS;
 import { tracked } from '@glimmer/tracking';
 import marked from 'marked';
 import { htmlSafe } from '@ember/string';
+import { inject as service } from '@ember/service';
 
 export default class ArticleModel extends Model {
   @tracked body;
+
+  @service('session') session;
 
   @attr('string') title;
   @attr('string') description;
@@ -27,6 +30,18 @@ export default class ArticleModel extends Model {
   loadComments() {
     return this.store.query('comment', {
       article_id: this.id,
+    });
+  }
+
+  async favorite() {
+    let response = await fetch(`/api/articles/${this.id}/favorite`, {
+      headers: {
+        Authorization: `Token ${this.session.token}`,
+      },
+    });
+    let articlePayload = await response.json();
+    this.store.pushPayload({
+      articles: [articlePayload.articles],
     });
   }
 }
