@@ -13,12 +13,21 @@
       <div class="col-md-9">
         <div class="feed-toggle">
           <ul class="nav nav-pills outline-active">
+            {{#if this.session.isLoggedIn}}
+              <li class="nav-item">
+                <a class="nav-link disabled" href="">Your Feed</a>
+              </li>
+            {{/if}}
             <li class="nav-item">
-              <a class="nav-link disabled" href="">Your Feed</a>
+              <LinkTo @route="index" @query={{hash author=null tag=null page=1}} class="nav-link {{unless this.tag "active"}}">
+                Global Feed
+              </LinkTo>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="">Global Feed</a>
-            </li>
+            {{#if this.tag}}
+              <li class="nav-item">
+                <LinkTo @route="index" @query={{hash author=null tag=this.tag}} class="nav-link">#{{this.tag}}</LinkTo>
+              </li>
+            {{/if}}
           </ul>
         </div>
 
