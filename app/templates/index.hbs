@@ -19,9 +19,11 @@
               </li>
             {{/if}}
             <li class="nav-item">
-              <LinkTo @route="index" @query={{hash author=null tag=null page=1}} class="nav-link {{unless this.tag "active"}}">
-                Global Feed
-              </LinkTo>
+              {{#let (and (not this.tag) (not this.author)) as |isGlobalFeed|}}
+                <LinkTo @route="index" @query={{hash author=null tag=null page=1}} class="nav-link {{if isGlobalFeed "active"}}">
+                  Global Feed
+                </LinkTo>
+              {{/let}}
             </li>
             {{#if this.tag}}
               <li class="nav-item">
@@ -33,6 +35,8 @@
 
         {{#each this.model as |article|}}
           <ArticlePreview @article={{article}}/>
+        {{else}}
+          <div class="article-preview">No articles are here... yet.</div>
         {{/each}}
 
         <Pagination
