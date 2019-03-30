@@ -1,6 +1,6 @@
 import ApplicationAdapter from './application';
 
-export default class AuthorAdapter extends ApplicationAdapter {
+export default class UserAdapter extends ApplicationAdapter {
   pathForType() {
     return 'profiles';
   }

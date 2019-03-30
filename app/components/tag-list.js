@@ -5,8 +5,8 @@ export default class TagListComponent extends Component {
   @tracked tags = [];
   @tracked isLoading = false;
 
-  constructor(owner, args) {
-    super(owner, args);
+  constructor() {
+    super(...arguments);
     this.loadTags();
   }
 
