@@ -6,5 +6,5 @@ export default class CommentModel extends Model {
   @attr('date') createdAt;
   @attr('date') updatedAt;
 
-  @belongsTo('user') author;
+  @belongsTo('profile') author;
 }
