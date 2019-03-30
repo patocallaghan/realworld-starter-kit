@@ -16,7 +16,7 @@ export default class ArticleModel extends Model {
   @attr('number') favoritesCount;
   @attr() tagList;
 
-  @belongsTo('author') author;
+  @belongsTo('user') author;
   @hasMany('comment', { async: false }) comments;
 
   get safeMarkup() {
