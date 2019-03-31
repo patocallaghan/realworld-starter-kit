@@ -36,10 +36,15 @@ export default class SessionService extends Service {
       email,
       password,
     });
-    await user.save();
-    localStorage.setItem(this.STORAGE_KEY);
-    this.token = user.token;
-    this.user = user;
+    try {
+      await user.save();
+      this.setToken(user.token);
+    } catch {
+      // Registration returned errors
+    } finally {
+      this.user = user;
+    }
+    return user;
   }
 
   @action
@@ -72,7 +77,7 @@ export default class SessionService extends Service {
   async fetchUser() {
     let response = await fetch(`${ENV.APP.apiHost}/user`, {
       headers: {
-        Authorization: `Token ${this.session.token}`,
+        Authorization: `Token ${this.token}`,
       },
     });
     let { user } = await response.json();
