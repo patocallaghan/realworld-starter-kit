@@ -63,10 +63,17 @@ export default class SessionService extends Service {
       }),
     });
     let userPayload = await login.json();
-    this.store.pushPayload({
-      users: [userPayload.user],
-    });
-    this.setToken(userPayload.user.token);
+    if (userPayload.errors) {
+      let errors = this.processLoginErrors(userPayload.errors);
+      return { errors };
+    } else {
+      this.store.pushPayload({
+        users: [userPayload.user],
+      });
+      this.setToken(userPayload.user.token);
+      this.user = this.store.peekRecord('user', userPayload.user.id);
+      return this.user;
+    }
   }
 
   @action
@@ -99,5 +106,16 @@ export default class SessionService extends Service {
   removeToken() {
     this.token = null;
     localStorage.removeItem('realworld.ember-octane.token');
+  }
+
+  processLoginErrors(errors) {
+    let loginErrors = [];
+    let errorKeys = Object.keys(errors);
+    errorKeys.forEach(attribute => {
+      errors[attribute].forEach(message => {
+        loginErrors.push(`${attribute} ${message}`);
+      });
+    });
+    return loginErrors;
   }
 }
