@@ -3,11 +3,11 @@
     <p class="card-text">{{@comment.body}}</p>
   </div>
   <div class="card-footer">
-    <LinkTo @route="author" @model={{@comment.author.id}} class="comment-author">
+    <LinkTo @route="profile" @model={{@comment.author.id}} class="comment-author">
       <img src={{@comment.author.image}} class="comment-author-img" alt="">
     </LinkTo>
     &nbsp;
-    <LinkTo @route="author" @model={{@comment.author.id}} class="comment-author">{{@comment.author.id}}</LinkTo>
+    <LinkTo @route="profile" @model={{@comment.author.id}} class="comment-author">{{@comment.author.id}}</LinkTo>
     <span class="date-posted">{{format-date @comment.updatedAt}}</span>
   </div>
 </div>
