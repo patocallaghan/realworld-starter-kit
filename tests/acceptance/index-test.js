@@ -10,6 +10,7 @@ module('Acceptance | index', function(hooks) {
     await visit('/');
 
     assert.equal(currentURL(), '/');
+    assert.ok(true);
     percySnapshot('Homepage');
   });
 });
