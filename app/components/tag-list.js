@@ -15,6 +15,9 @@ export default class TagListComponent extends Component {
     this.isLoading = true;
     let response = await fetch(`${ENV.APP.apiHost}/tags`);
     let { tags } = await response.json();
+    if (this.isDestroying) {
+      return;
+    }
     this.tags = tags;
     this.isLoading = false;
   }

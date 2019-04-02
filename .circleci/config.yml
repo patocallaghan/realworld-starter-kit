@@ -21,7 +21,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
-      - run: yarn test
+      - run: EMBER_ENV=test yarn test
       - run:
           name: Lints
           command: |
