@@ -14,19 +14,16 @@ export default class SessionService extends Service {
   user = null;
   STORAGE_KEY = 'realworld.ember-octane.token';
 
-  get isLoggedIn() {
-    if (this.token) {
-      return true;
-    }
-
+  initSession() {
     let storedToken = this.getStoredToken();
     if (storedToken) {
       this.token = storedToken;
-      this.fetchUser();
-      return true;
+      return this.fetchUser();
     }
+  }
 
-    return false;
+  get isLoggedIn() {
+    return !!this.token;
   }
 
   @action
@@ -92,6 +89,7 @@ export default class SessionService extends Service {
       users: [user],
     });
     this.user = this.store.peekRecord('user', user.id);
+    return this.user;
   }
 
   getStoredToken() {

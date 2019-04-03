@@ -35,14 +35,23 @@ export default class ArticleModel extends Model {
   }
 
   async favorite() {
+    await this.favoriteOperation('favorite');
+  }
+
+  async unfavorite() {
+    await this.favoriteOperation('unfavorite');
+  }
+
+  async favoriteOperation(operation) {
     let response = await fetch(`${ENV.APP.apiHost}/articles/${this.id}/favorite`, {
+      method: operation === 'unfavorite' ? 'DELETE' : 'POST',
       headers: {
         Authorization: `Token ${this.session.token}`,
       },
     });
-    let articlePayload = await response.json();
+    let { article } = await response.json();
     this.store.pushPayload({
-      articles: [articlePayload.articles],
+      articles: [Object.assign(article, { id: article.slug })],
     });
   }
 }

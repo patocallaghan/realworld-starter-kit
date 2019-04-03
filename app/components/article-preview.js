@@ -7,9 +7,9 @@ export default class ArticlePreviewComponent extends Component {
   @service('router') router;
 
   @action
-  favoriteArticle(article) {
+  favoriteArticle(article, operation) {
     if (this.session.isLoggedIn) {
-      article.favorite();
+      article[operation]();
     } else {
       this.router.transitionTo('sign-in');
     }
