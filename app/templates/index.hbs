@@ -15,19 +15,19 @@
           <ul class="nav nav-pills outline-active">
             {{#if this.session.isLoggedIn}}
               <li class="nav-item">
-                <LinkTo @route="index" @query={{hash author=this.session.user.username tag=null page=1}} class="nav-link  {{unless this.session.user "active"}}">Your Feed</LinkTo>
+                <LinkTo @route="index" @query={{hash feed="your" tag=null page=1}} class="nav-link">Your Feed</LinkTo>
               </li>
             {{/if}}
             <li class="nav-item">
-              {{#let (and (not this.tag) (not this.author)) as |isGlobalFeed|}}
-                <LinkTo @route="index" @query={{hash author=null tag=null page=1}} class="nav-link {{if isGlobalFeed "active"}}">
+              {{#let (and (not this.tag) (not this.feed)) as |isGlobalFeed|}}
+                <LinkTo @route="index" @query={{hash feed=null tag=null page=1}} class="nav-link {{if isGlobalFeed "active"}}">
                   Global Feed
                 </LinkTo>
               {{/let}}
             </li>
             {{#if this.tag}}
               <li class="nav-item">
-                <LinkTo @route="index" @query={{hash author=null tag=this.tag}} class="nav-link">#{{this.tag}}</LinkTo>
+                <LinkTo @route="index" @query={{hash feed=null tag=this.tag}} class="nav-link">#{{this.tag}}</LinkTo>
               </li>
             {{/if}}
           </ul>
@@ -43,7 +43,7 @@
           @total={{this.model.meta.articlesCount}}
           @perPage={{10}}
           @current={{this.page}}
-          @existingParams={{hash author=this.author tag=this.tag}}
+          @existingParams={{hash author=this.feed tag=this.tag}}
         />
       </div>
 

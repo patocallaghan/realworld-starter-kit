@@ -1,8 +1,11 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default class IndexRoute extends Route {
+  @service('session') session;
+
   queryParams = {
-    author: {
+    feed: {
       refreshModel: true,
     },
     page: {
@@ -13,14 +16,17 @@ export default class IndexRoute extends Route {
     },
   };
 
-  model({ page, author, tag }) {
+  model({ feed, page, tag }) {
     let NUMBER_OF_ARTICLES = 10;
     let offset = (parseInt(page, 10) - 1) * NUMBER_OF_ARTICLES;
-    return this.store.query('article', {
-      limit: NUMBER_OF_ARTICLES,
-      offset,
-      tag,
-      author,
-    });
+    if (feed === 'your') {
+      return this.session.user.fetchFeed(page);
+    } else {
+      return this.store.query('article', {
+        limit: NUMBER_OF_ARTICLES,
+        offset,
+        tag,
+      });
+    }
   }
 }
