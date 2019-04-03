@@ -1,7 +1,9 @@
 <div class="article-preview">
   <div class="article-meta">
     <ArticleAuthor @author={{@article.author}} @updatedAt={{@article.updatedAt}} />
-    <button class="btn btn{{unless @article.favorited "-outline"}}-primary btn-sm pull-xs-right" onclick={{action this.favoriteArticle @article}}>
+    <button
+      class="btn btn{{if (not @article.favorited) "-outline"}}-primary btn-sm pull-xs-right"
+      onclick={{action this.favoriteArticle @article (if @article.favorited "unfavorite" "favorite")}}>
       <i class="ion-heart"></i> {{@article.favoritesCount}}
     </button>
   </div>
