@@ -5,8 +5,8 @@ export default class IndexController extends Controller {
   @service('session') session;
   @service('router') router;
 
-  queryParams = ['tag', 'author', 'page'];
+  queryParams = ['tag', 'feed', 'page'];
   tag = null;
-  author = null;
+  feed = null;
   page = 1;
 }
