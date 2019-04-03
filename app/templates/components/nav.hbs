@@ -17,7 +17,7 @@
           </LinkTo>
         </li>
         <li class="nav-item">
-          <LinkTo @route="author" @model={{this.session.user}} class="nav-link">{{this.session.user.username}}</LinkTo>
+          <LinkTo @route="profile" @model={{this.session.user}} class="nav-link">{{this.session.user.username}}</LinkTo>
         </li>
         <li class="nav-item">
           <a href="" class="nav-link" onclick={{action this.session.logOut}}>Log out</a>
