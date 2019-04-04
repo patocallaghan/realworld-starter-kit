@@ -7,7 +7,9 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('editor');
+  this.route('editor', function() {
+    this.route('edit', { path: ':id' });
+  });
   this.route('settings');
   this.route('register');
   this.route('login');
