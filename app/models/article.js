@@ -7,7 +7,10 @@ import { inject as service } from '@ember/service';
 import ENV from 'realworld-starter-kit/config/environment';
 
 export default class ArticleModel extends Model {
+  @tracked title;
+  @tracked description;
   @tracked body;
+  @tracked tagList;
 
   @service('session') session;
 
@@ -18,7 +21,7 @@ export default class ArticleModel extends Model {
   @attr('date') updatedAt;
   @attr('boolean') favorited;
   @attr('number') favoritesCount;
-  @attr() tagList;
+  @attr({ defaultValue: () => [] }) tagList;
 
   @belongsTo('profile') author;
   @hasMany('comment', { async: false }) comments;
