@@ -9,5 +9,8 @@
     &nbsp;
     <LinkTo @route="profile" @model={{@comment.author.id}} class="comment-author">{{@comment.author.id}}</LinkTo>
     <span class="date-posted">{{format-date @comment.updatedAt}}</span>
+    {{#if (eq this.session.user.username @comment.author.id)}}
+      <a href="" class="mod-options" onclick={{action this.deleteComment}}><i class="ion-trash-a"></i></a>
+    {{/if}}
   </div>
 </div>

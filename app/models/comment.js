@@ -7,4 +7,5 @@ export default class CommentModel extends Model {
   @attr('date') updatedAt;
 
   @belongsTo('profile') author;
+  @belongsTo('article') article;
 }
