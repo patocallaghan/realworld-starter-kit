@@ -1,10 +1,10 @@
 <form class="card comment-form">
   <div class="card-block">
-    <textarea class="form-control" placeholder="Write a comment..." rows="3"></textarea>
+    <Textarea class="form-control" placeholder="Write a comment..." rows="3" @value={{this.body}} />
   </div>
   <div class="card-footer">
-    <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" alt="">
-    <button class="btn btn-sm btn-primary">
+    <img src={{@author.image}} class="comment-author-img" alt="">
+    <button class="btn btn-sm btn-primary" disabled={{not this.body}} onclick={{action this.addComment}}>
       Post Comment
     </button>
   </div>
