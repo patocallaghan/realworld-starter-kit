@@ -8,11 +8,13 @@
           <img src={{@profile.image}} alt="" class="user-img">
           <h4>{{@profile.id}}</h4>
           <p>{{@profile.bio}}</p>
-          <button class="btn btn-sm btn-outline-secondary action-btn">
-            <i class="ion-plus-round"></i>
-            &nbsp;
-            Follow {{@profile.id}}
-          </button>
+          {{#if (not-eq @profile.id this.session.user.username)}}
+            <button class="btn btn-sm btn-outline-secondary action-btn">
+              <i class="ion-plus-round"></i>
+              &nbsp;
+              Follow {{@profile.id}}
+            </button>
+          {{/if}}
         </div>
 
       </div>

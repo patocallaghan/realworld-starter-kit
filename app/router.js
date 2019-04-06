@@ -20,6 +20,7 @@ Router.map(function() {
   this.route('profile', { path: 'profile/:id' }, function() {
     this.route('favorites');
   });
+  this.route('error', { path: '/*path' });
 });
 
 export default Router;
