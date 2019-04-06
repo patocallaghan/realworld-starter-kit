@@ -1,14 +1,23 @@
 <div class="article-meta">
   <ArticleAuthor @author={{@article.author}} @updatedAt={{@article.updatedAt}} />
-  <button class="btn btn-sm btn-outline-secondary">
-    <i class="ion-plus-round"></i>
-    &nbsp;
-    Follow Eric Simons <span class="counter">(10)</span>
-  </button>
-  &nbsp;&nbsp;
-  <button class="btn btn-sm btn-outline-primary">
-    <i class="ion-heart"></i>
-    &nbsp;
-    Favorite Post <span class="counter">(29)</span>
-  </button>
+  {{#if (eq this.session.user.username @article.author.id)}}
+    <LinkTo class="btn btn-outline-secondary btn-sm" @route="editor.edit" @model={{@article.id}}>
+      <i class="ion-edit"></i> Edit Article
+    </LinkTo>
+    <button class="btn btn-outline-danger btn-sm" onclick={{action this.deleteArticle}}>
+      <i class="ion-trash-a"></i> Delete Article
+    </button>
+  {{else}}
+    <button class="btn btn-sm btn-outline-secondary">
+      <i class="ion-plus-round"></i>
+      &nbsp;
+      Follow Eric Simons <span class="counter">(10)</span>
+    </button>
+    &nbsp;&nbsp;
+    <button class="btn btn-sm btn-outline-primary">
+      <i class="ion-heart"></i>
+      &nbsp;
+      Favorite Post <span class="counter">(29)</span>
+    </button>
+  {{/if}}
 </div>
