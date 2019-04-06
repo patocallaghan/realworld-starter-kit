@@ -11,13 +11,15 @@
     <button class="btn btn-sm btn-outline-secondary">
       <i class="ion-plus-round"></i>
       &nbsp;
-      Follow Eric Simons <span class="counter">(10)</span>
+      Follow {{@article.author.id}}
     </button>
     &nbsp;&nbsp;
-    <button class="btn btn-sm btn-outline-primary">
+    <button
+      class="btn btn-sm btn{{if (not @article.favorited) "-outline"}}-primary"
+      onclick={{action this.favoriteArticle @article (if @article.favorited "unfavorite" "favorite")}}>
       <i class="ion-heart"></i>
       &nbsp;
-      Favorite Post <span class="counter">(29)</span>
+      {{if @article.favorited "Unf" "F"}}avorite Post <span class="counter">{{@article.favoritesCount}}</span>
     </button>
   {{/if}}
 </div>
