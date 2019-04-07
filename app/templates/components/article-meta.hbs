@@ -10,12 +10,6 @@
   {{else}}
     <FollowProfile @profile={{@article.author}} />
     &nbsp;&nbsp;
-    <button
-      class="btn btn-sm btn{{if (not @article.favorited) "-outline"}}-primary"
-      onclick={{action this.favoriteArticle (if @article.favorited "unfavorite" "favorite")}}>
-      <i class="ion-heart"></i>
-      &nbsp;
-      {{if @article.favorited "Unf" "F"}}avorite Post <span class="counter">{{@article.favoritesCount}}</span>
-    </button>
+    <FavoriteArticle @article={{@article}} />
   {{/if}}
 </div>

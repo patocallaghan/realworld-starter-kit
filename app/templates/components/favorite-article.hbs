@@ -1,0 +1,11 @@
+<button
+  class="btn btn-sm btn{{if (not @article.favorited) "-outline"}}-primary"
+  onclick={{action this.favoriteArticle (if @article.favorited "unfavorite" "favorite")}} ...attributes>
+  <i class="ion-heart"></i>
+  &nbsp;
+  {{#if @isIconOnly}}
+    {{@article.favoritesCount}}
+  {{else}}
+    {{if @article.favorited "Unf" "F"}}avorite Post <span class="counter">{{@article.favoritesCount}}</span>
+  {{/if}}
+</button>

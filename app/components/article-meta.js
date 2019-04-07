@@ -11,13 +11,4 @@ export default class SignUpComponent extends Component {
     await this.args.article.destroyRecord();
     this.router.transitionTo('index');
   }
-
-  @action
-  favoriteArticle(operation) {
-    if (this.session.isLoggedIn) {
-      this.args.article[operation]();
-    } else {
-      this.router.transitionTo('sign-in');
-    }
-  }
 }
