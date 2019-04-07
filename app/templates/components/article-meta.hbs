@@ -8,15 +8,18 @@
       <i class="ion-trash-a"></i> Delete Article
     </button>
   {{else}}
-    <button class="btn btn-sm btn-outline-secondary">
-      <i class="ion-plus-round"></i>
+    <button
+      class="btn btn-sm btn{{if (not @article.author.following) "-outline"}}-secondary"
+      onclick={{action this.followProfile (if @article.author.following "unfollow" "follow")}}
+    >
+      <i class="ion-{{if @article.author.following "minus" "plus"}}-round"></i>
       &nbsp;
-      Follow {{@article.author.id}}
+      {{if @article.author.following "Unf" "F"}}ollow {{@article.author.id}}
     </button>
     &nbsp;&nbsp;
     <button
       class="btn btn-sm btn{{if (not @article.favorited) "-outline"}}-primary"
-      onclick={{action this.favoriteArticle @article (if @article.favorited "unfavorite" "favorite")}}>
+      onclick={{action this.favoriteArticle (if @article.favorited "unfavorite" "favorite")}}>
       <i class="ion-heart"></i>
       &nbsp;
       {{if @article.favorited "Unf" "F"}}avorite Post <span class="counter">{{@article.favoritesCount}}</span>
