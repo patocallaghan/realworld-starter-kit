@@ -8,14 +8,7 @@
       <i class="ion-trash-a"></i> Delete Article
     </button>
   {{else}}
-    <button
-      class="btn btn-sm btn{{if (not @article.author.following) "-outline"}}-secondary"
-      onclick={{action this.followProfile (if @article.author.following "unfollow" "follow")}}
-    >
-      <i class="ion-{{if @article.author.following "minus" "plus"}}-round"></i>
-      &nbsp;
-      {{if @article.author.following "Unf" "F"}}ollow {{@article.author.id}}
-    </button>
+    <FollowProfile @profile={{@article.author}} />
     &nbsp;&nbsp;
     <button
       class="btn btn-sm btn{{if (not @article.favorited) "-outline"}}-primary"

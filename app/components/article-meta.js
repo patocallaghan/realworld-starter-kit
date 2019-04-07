@@ -20,13 +20,4 @@ export default class SignUpComponent extends Component {
       this.router.transitionTo('sign-in');
     }
   }
-
-  @action
-  followProfile(operation) {
-    if (this.session.isLoggedIn) {
-      this.args.article.author.content[operation]();
-    } else {
-      this.router.transitionTo('sign-in');
-    }
-  }
 }
