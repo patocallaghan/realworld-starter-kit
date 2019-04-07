@@ -13,9 +13,18 @@ export default class SignUpComponent extends Component {
   }
 
   @action
-  favoriteArticle(article, operation) {
+  favoriteArticle(operation) {
     if (this.session.isLoggedIn) {
-      article[operation]();
+      this.args.article[operation]();
+    } else {
+      this.router.transitionTo('sign-in');
+    }
+  }
+
+  @action
+  followProfile(operation) {
+    if (this.session.isLoggedIn) {
+      this.args.article.author.content[operation]();
     } else {
       this.router.transitionTo('sign-in');
     }
