@@ -4,7 +4,6 @@ import { tracked } from '@glimmer/tracking';
 import marked from 'marked';
 import { htmlSafe } from '@ember/string';
 import { inject as service } from '@ember/service';
-import ENV from 'realworld-starter-kit/config/environment';
 
 export default class ArticleModel extends Model {
   @tracked title;
@@ -13,6 +12,7 @@ export default class ArticleModel extends Model {
   @tracked tagList;
 
   @service('session') session;
+  @service('authorizedFetch') authorizedFetch;
 
   @attr('string') title;
   @attr('string') description;
@@ -46,13 +46,10 @@ export default class ArticleModel extends Model {
   }
 
   async favoriteOperation(operation) {
-    let response = await fetch(`${ENV.APP.apiHost}/articles/${this.id}/favorite`, {
-      method: operation === 'unfavorite' ? 'DELETE' : 'POST',
-      headers: {
-        Authorization: `Token ${this.session.token}`,
-      },
-    });
-    let { article } = await response.json();
+    let { article } = await this.authorizedFetch.fetch(
+      `/articles/${this.id}/favorite`,
+      operation === 'unfavorite' ? 'DELETE' : 'POST',
+    );
     this.store.pushPayload({
       articles: [Object.assign(article, { id: article.slug })],
     });
