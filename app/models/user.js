@@ -1,6 +1,5 @@
 import DS from 'ember-data';
 const { Model, attr } = DS;
-import ENV from 'realworld-starter-kit/config/environment';
 import { inject as service } from '@ember/service';
 
 export default class UserModel extends Model {
@@ -16,12 +15,7 @@ export default class UserModel extends Model {
   @attr('date') updatedAt;
 
   async fetchFeed(page = 1) {
-    let response = await fetch(`${ENV.APP.apiHost}/articles/feed?page=${page}`, {
-      headers: {
-        Authorization: `Token ${this.session.token}`,
-      },
-    });
-    let { articles } = await response.json();
+    let { articles } = await this.authorizedFetch.fetch(`/articles/feed?page=${page}`);
     if (!articles.length) {
       return [];
     }

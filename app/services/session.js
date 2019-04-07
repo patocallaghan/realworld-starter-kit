@@ -6,6 +6,7 @@ import ENV from 'realworld-starter-kit/config/environment';
 
 export default class SessionService extends Service {
   @service('store') store;
+  @service('authorizedFetch') authorizedFetch;
 
   @tracked token;
   @tracked user;
@@ -79,12 +80,7 @@ export default class SessionService extends Service {
   }
 
   async fetchUser() {
-    let response = await fetch(`${ENV.APP.apiHost}/user`, {
-      headers: {
-        Authorization: `Token ${this.token}`,
-      },
-    });
-    let { user } = await response.json();
+    let { user } = await this.authorizedFetch.fetch('/user');
     this.store.pushPayload({
       users: [user],
     });
