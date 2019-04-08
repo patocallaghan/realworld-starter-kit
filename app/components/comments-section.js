@@ -7,6 +7,7 @@ export default class CommentsSectionComponent extends Component {
   @tracked isLoading = false;
 
   @service('store') store;
+  @service('session') session;
 
   constructor() {
     super(...arguments);

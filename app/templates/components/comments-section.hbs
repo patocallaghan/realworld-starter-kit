@@ -1,4 +1,6 @@
-<CommentForm @addComment={{action this.addComment}} />
+{{#if this.session.isLoggedIn}}
+  <CommentForm @addComment={{action this.addComment}} />
+{{/if}}
 
 {{#if this.isLoading}}
   <p>Loading comments...</p>
