@@ -9,7 +9,7 @@ export default class AuthorizedFetchService extends Service {
     let response = await fetch(`${ENV.APP.apiHost}${url}`, {
       method,
       headers: {
-        Authorization: `Token ${this.session.token}`,
+        Authorization: this.session.token ? `Token ${this.session.token}` : '',
       },
     });
     let payload = await response.json();

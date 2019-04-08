@@ -9,7 +9,7 @@ export default class ApplicationAdapter extends RESTAdapter {
   host = ENV.APP.apiHost;
 
   headers = {
-    Authorization: `Token ${this.session.token}`,
+    Authorization: this.session.token ? `Token ${this.session.token}` : '',
   };
 
   handleResponse(status, headers, payload) {
