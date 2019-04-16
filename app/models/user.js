@@ -3,7 +3,7 @@ const { Model, attr } = DS;
 import { inject as service } from '@ember/service';
 
 export default class UserModel extends Model {
-  @service('session') session;
+  @service('authorizedFetch') authorizedFetch;
 
   @attr('string') bio;
   @attr('string') email;
@@ -19,10 +19,11 @@ export default class UserModel extends Model {
     if (!articles.length) {
       return [];
     }
-    let ids = articles.map(article => article.id);
-    this.store.pushPayload({
-      articles: [articles],
-    });
+    let ids = articles.map(article => article.slug);
+    let normalizedArticles = articles.map(article =>
+      Object.assign({}, article, { id: article.slug }),
+    );
+    this.store.pushPayload({ articles: normalizedArticles });
     return this.store.peekAll('article').filter(article => ids.includes(article.id));
   }
 }
