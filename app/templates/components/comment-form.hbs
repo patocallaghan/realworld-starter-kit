@@ -3,8 +3,8 @@
     <Textarea class="form-control" placeholder="Write a comment..." rows="3" @value={{this.body}} />
   </div>
   <div class="card-footer">
-    <img src={{this.session.user.image}} class="comment-author-img" alt="">
-    <button class="btn btn-sm btn-primary" disabled={{not this.body}} onclick={{action this.addComment}}>
+    <img src={{this.session.user.image}} class="comment-author-img" alt={{this.session.user.username}}>
+    <button class="btn btn-sm btn-primary" disabled={{not this.body}} {{on "click" this.addComment}} type="button">
       Post Comment
     </button>
   </div>
