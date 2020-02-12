@@ -25,7 +25,7 @@
     <fieldset class="form-group">
       <Input class="form-control form-control-lg" type="password" placeholder="Password" @value={{this.session.user.password}} />
     </fieldset>
-    <button class="btn btn-lg btn-primary pull-xs-right" disabled={{or (not this.session.user.hasDirtyAttributes) this.session.user.isSaving}} onclick={{action this.submit}}>
+    <button class="btn btn-lg btn-primary pull-xs-right" disabled={{or (not this.session.user.hasDirtyAttributes) this.session.user.isSaving}} {{on "click" this.submit}} type="button">
       Update Settings
     </button>
   </fieldset>

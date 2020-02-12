@@ -1,6 +1,6 @@
 <button
   class="btn btn-sm btn{{if (not @article.favorited) "-outline"}}-primary"
-  onclick={{action this.favoriteArticle (if @article.favorited "unfavorite" "favorite")}} ...attributes>
+  {{on "click" (fn this.favoriteArticle (if @article.favorited "unfavorite" "favorite"))}} type="button" ...attributes>
   <i class="ion-heart"></i>
   &nbsp;
   {{#if @isIconOnly}}

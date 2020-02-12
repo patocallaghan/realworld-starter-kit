@@ -4,7 +4,7 @@
     <LinkTo class="btn btn-outline-secondary btn-sm" @route="editor.edit" @model={{@article.id}}>
       <i class="ion-edit"></i> Edit Article
     </LinkTo>
-    <button class="btn btn-outline-danger btn-sm" onclick={{action this.deleteArticle}}>
+    <button class="btn btn-outline-danger btn-sm" {{on "click" this.deleteArticle}} type="button">
       <i class="ion-trash-a"></i> Delete Article
     </button>
   {{else}}

@@ -21,7 +21,7 @@
   <fieldset class="form-group">
     <Input class="form-control form-control-lg" type="password" placeholder="Password" @value={{this.password}} />
   </fieldset>
-  <button class="btn btn-lg btn-primary pull-xs-right" onclick={{this.submit}} disabled={{or (not this.username) (not this.email) ( not this.password)}}>
+  <button class="btn btn-lg btn-primary pull-xs-right" {{on "click" this.submit}} disabled={{or (not this.username) (not this.email) ( not this.password)}} type="button">
     Sign up
   </button>
 </form>
